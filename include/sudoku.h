@@ -8,6 +8,11 @@ extern int UNSOLVED;
 extern int SIZE_ROWS;
 extern int SIZE_COLUMNS;
 
+typedef struct Sudoku{
+    struct Square *** squares;
+    struct Box ** boxes;
+} Sudoku;
+
 typedef struct Box
 {
     struct Square ** squares;
@@ -33,9 +38,11 @@ typedef struct Square
 int **createPuzzle();
 void printPuzzle(int** puzzle);
 void freePuzzle(int **puzzle);
-Square*** setUpPuzzle(int **puzzle);
+Sudoku * setUpPuzzle(int **puzzle);
 int updateSudoku(Square ***sudoku, int row, int col);
-int checkPuzzle(Square*** sudoku);
+int checkPuzzle(Square*** sudoku, Box ** boxes);
+
+Sudoku * createSudoku(Square *** square, Box ** boxes);
 
 // Box functions
 Box ** createBoxes();

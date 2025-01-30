@@ -34,3 +34,35 @@ int updateBoxes(Square *** sudoku, int row, int col){
         }
     }
 }
+
+int boxSingles(Square *** sudoku, Box ** boxes){
+    int i,j,k;
+    int count;
+    int temp;
+
+    //loop through boxes
+    for(i=0; i<9; i++){
+        //loop through possible array
+        for(j=0; j<9; j++){
+            count = 0;
+            //loop through squares
+            for(k=0; k<9; k++){
+                if(boxes[i]->squares[k]->number != 0)
+                    continue;
+                if(boxes[i]->squares[k]->possible[j] == 0){
+                    count++;
+                    temp = k;
+                }
+                if(count == 1)
+                    break;
+            }
+
+            if(count == 1){
+                boxes[i]->squares[temp]->number = j + 1;
+                UNSOLVED--;
+                boxes[i]->squares[temp]->solvable = 0;
+                updateBoxes(sudoku, boxes[i]->squares[temp]->row, boxes[i]->squares[temp]->column);
+            }
+        }
+    }
+}

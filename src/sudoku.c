@@ -6,11 +6,11 @@ int SIZE_COLUMNS = 9;
 
 int main(){
     int **puzzle;
-    Square ***sudoku;
+    Sudoku * sudoku;
 
     puzzle = createPuzzle();
-    printPuzzle(puzzle);
-    freePuzzle(puzzle);
+    printPuzzle(sudoku->squares);
+    freePuzzle(sudoku->squares);
 
     sudoku = setUpPuzzle(puzzle);
 
