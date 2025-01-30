@@ -10,6 +10,10 @@ extern int SIZE_COLUMNS;
 
 typedef struct Box
 {
+    struct Square ** squares;
+    int numbers;
+    int possible[9];
+    int solvable;  
     struct Box* next;
 } Box;
 
@@ -32,5 +36,9 @@ void freePuzzle(int **puzzle);
 Square*** setUpPuzzle(int **puzzle);
 int updateSudoku(Square ***sudoku, int row, int col);
 int checkPuzzle(Square*** sudoku);
+
+// Box functions
+Box ** createBoxes();
+int updateBoxes(Square *** sudoku, int row, int col);
 
 #endif
